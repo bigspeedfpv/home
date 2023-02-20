@@ -1,0 +1,35 @@
+html {
+    --brand-background: #151213;
+    --brand-black: #1E1C1C;
+    --brand-white: #DBD3D8;
+    --brand-red: #EF233C;
+    --brand-blue: #00FFC5;
+}
+
+html,body, #__nuxt, #__layout{
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    background: var(--brand-background);
+    color: var(--brand-white);
+
+    font-family: 'Inter', sans-serif;
+    font-size: 1.25rem;
+}
+
+@supports (font-variation-settings: normal) {
+    body {
+        font-family: 'Inter var', sans-serif;
+    }
+}
+
+a {
+    font-weight: bold;
+    color: var(--brand-blue);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
