@@ -7,9 +7,11 @@
       </div>
       <div class="divider" />
       <div class="flex col end">
-        <NuxtLink to="/about" title="About">About</NuxtLink>
-        <NuxtLink to="/projects" title="Projects">Projects</NuxtLink>
-        <a href="https://github.com/bigspeedfpv" title="GitHub">GitHub</a>
+        <NuxtLink to="/blog" title="Blog">Blog</NuxtLink>
+        <NuxtLink to="/portfolio" title="Portfolio">Portfolio</NuxtLink>
+        <a href="https://github.com/bigspeedfpv" target="_blank" title="GitHub">
+          GitHub
+        </a>
       </div>
     </div>
   </div>
@@ -30,16 +32,17 @@
 
 .col {
   flex-direction: column;
-  gap: 0.75rem;
 }
 
 .col.start {
   align-items: flex-end;
   text-align: end;
+  gap: 0.25rem;
 }
 
 .col.end {
   align-items: flex-start;
+  gap: 0.75rem;
 }
 
 .row {

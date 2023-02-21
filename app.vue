@@ -7,11 +7,11 @@
         Home
       </NuxtLink>
       <NuxtLink
-        to="/about"
-        :class="{ inactive: route.path !== '/about' }"
-        title="About"
+        to="/blog"
+        :class="{ inactive: route.path !== '/blog' }"
+        title="Blog"
       >
-        About
+        Blog
       </NuxtLink>
       <NuxtLink
         to="/portfolio"
