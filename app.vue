@@ -3,44 +3,40 @@
 
   <div class="container">
     <div class="nav">
-      <NuxtLink to="/" :class="{ inactive: route.path !== '/' }" title="Home">
+      <NuxtLink to="/" :class="{ inactive: $route.path !== '/' }" title="Home">
         Home
       </NuxtLink>
       <NuxtLink
         to="/blog"
-        :class="{ inactive: route.path !== '/blog' }"
+        :class="{ inactive: !$route.path.includes('/blog') }"
         title="Blog"
       >
         Blog
       </NuxtLink>
       <NuxtLink
         to="/portfolio"
-        :class="{ inactive: route.path !== '/portfolio' }"
+        :class="{ inactive: $route.path !== '/portfolio' }"
         title="Portfolio"
       >
         Portfolio
       </NuxtLink>
-      <NuxtLink
-        to="/contact"
-        :class="{ inactive: route.path !== '/contact' }"
-        title="Contact"
+      <a
+        href="https://github.com/bigspeedfpv/home"
+        target="_blank"
+        class="inactive"
       >
-        Contact
-      </NuxtLink>
+        Source
+      </a>
     </div>
   </div>
 </template>
-
-<script setup>
-const route = useRoute();
-</script>
 
 <style scoped>
 .container {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 60px;
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -72,6 +68,7 @@ const route = useRoute();
 
 a {
   text-align: center;
+  transition: color 0.2s ease-in-out;
 }
 
 a::after {
