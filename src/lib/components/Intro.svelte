@@ -1,6 +1,4 @@
 <script lang="ts">
-	import NowPlaying from './NowPlaying.svelte';
-
 	import ProfileImage from '$lib/assets/profile.png?w=175&h=175&webp'; // LSP complains here but it's a thing I pinky promise
 
 	import skills from '$lib/skills';
