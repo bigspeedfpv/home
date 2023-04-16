@@ -4,7 +4,7 @@ import {
 	SPOTIFY_REFRESH_TOKEN
 } from '$env/static/private';
 
-const basic = Buffer.from(`${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_SECRET}`).toString('base64');
+const basic = btoa(`${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_SECRET}`);
 
 const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
 const NOW_PLAYING_ENDPOINT = `https://api.spotify.com/v1/me/player/currently-playing`;
@@ -35,6 +35,14 @@ const getNowPlaying = async () => {
 	});
 };
 
+const artistString = (artists: Artist[]): string => {
+    const combined = artists.map(a => a.name).join(', ');
+
+    // we only want the first artist's name if both combined are over 20 chars
+    if (combined.length > 20) return artists[0].name;
+    return combined;
+}
+
 export async function GET() {
 	const response = await getNowPlaying();
 
@@ -59,13 +67,9 @@ export async function GET() {
 
 	const isPlaying = song.is_playing;
 	let title = song.item.name;
-	let artist = song.item.artists.map((_artist: Artist) => _artist.name).join(', ');
+	let artist = artistString(song.item.artists);
 	const songUrl = song.item.external_urls.spotify;
 
-	// trim artist and song names
-	if (artist.length > 15) {
-		artist = artist.substring(0, 15) + '...';
-	}
 	if (title.length > 25) {
 		title = title.substring(0, 25) + '...';
 	}
