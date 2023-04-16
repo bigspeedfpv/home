@@ -27,13 +27,13 @@ export async function GET() {
 	let artist = song.item.artists.map((_artist: Artist) => _artist.name).join(', ');
 	const songUrl = song.item.external_urls.spotify;
 
-    // trim artist and song names
-    if (artist.length > 15) {
-        artist = artist.substring(0, 15) + '...';
-    }
-    if (title.length > 25) {
-        title = title.substring(0, 25) + '...';
-    }
+	// trim artist and song names
+	if (artist.length > 15) {
+		artist = artist.substring(0, 15) + '...';
+	}
+	if (title.length > 25) {
+		title = title.substring(0, 25) + '...';
+	}
 
 	return new Response(
 		JSON.stringify({

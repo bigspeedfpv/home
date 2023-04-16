@@ -30,7 +30,14 @@
 			{/each}
 		</div>
 		<div class="bottom-8">
-			<NowPlaying song={data.song} />
+			{#if data.song.isPlaying}
+				<a href={data.song.songUrl} target="_blank">
+					<span class="text-xl opacity-50 hover:opacity-75 transition">
+						Now Playing:
+						<strong>{data.song.artist} - {data.song.title}</strong>
+					</span>
+				</a>
+			{/if}
 		</div>
 	</div>
 </div>
