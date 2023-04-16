@@ -2,6 +2,8 @@
 	import ProfileImage from '$lib/assets/profile.png?w=175&h=175&webp'; // LSP complains here but it's a thing I pinky promise
 
 	import skills from '$lib/skills';
+    // This is a bit of a hack to get the skills to wrap nicely on smaller screens
+    // it'll add a break roughly halfway instead of at the first one that doesn't fit
     let skillsHalfwayPoint = Math.ceil(skills.length / 2);
 
 	import type { Song } from '$lib/types';
@@ -27,14 +29,14 @@
 					<img src={skill.src} class="inline-block w-10" alt={skill.alt} />
 				</a>
                 {#if skillsHalfwayPoint === index + 1}
-                    <wbr /> <!-- this is a hack to make the skills wrap nicely on mobile -->
+                    <wbr />
                 {/if}
 			{/each}
 		</div>
 		<div class="bottom-8">
 			{#if data.song.isPlaying}
 				<a href={data.song.songUrl} target="_blank">
-					<span class="text-xl opacity-50 hover:opacity-75 transition">
+					<span class="text-xl opacity-50 hover:opacity-75 transition text-center md:text-left">
 						Now Playing:
 						<strong>{data.song.artist} - {data.song.title}</strong>
 					</span>
