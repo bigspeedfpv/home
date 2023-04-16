@@ -1,7 +1,12 @@
 <script lang="ts">
+	import NowPlaying from './NowPlaying.svelte';
+
 	import ProfileImage from '$lib/assets/profile.png?w=175&h=175&webp'; // LSP complains here but it's a thing I pinky promise
 
 	import skills from '$lib/skills';
+	import type { Song } from '$lib/types';
+
+	export let data: { song: Song };
 </script>
 
 <!-- fancy blurred background gradient -->
@@ -23,6 +28,9 @@
 					<img src={skill.src} class="w-10" alt={skill.alt} />
 				</a>
 			{/each}
+		</div>
+		<div class="bottom-8">
+			<NowPlaying song={data.song} />
 		</div>
 	</div>
 </div>
