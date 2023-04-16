@@ -2,8 +2,9 @@
 	import ProfileImage from '$lib/assets/profile.png?w=175&h=175&webp'; // LSP complains here but it's a thing I pinky promise
 
 	import skills from '$lib/skills';
-	import type { Song } from '$lib/types';
+    let skillsHalfwayPoint = Math.ceil(skills.length / 2);
 
+	import type { Song } from '$lib/types';
 	export let data: { song: Song };
 </script>
 
@@ -14,17 +15,20 @@
 	/>
 </div>
 
-<div class="w-screen h-screen flex justify-center items-center gap-8 fixed top-0 left-0">
+<div class="w-screen h-screen flex flex-col md:flex-row justify-center items-center p-6 gap-4 md:gap-8 fixed top-0 left-0">
 	<img src={ProfileImage} alt="Profile" class="rounded-full shadow-2xl" />
 
-	<div class="flex flex-col justify-center gap-2">
-		<h1 class="text-5xl">Hey! I'm <strong>Andrew</strong>.</h1>
-		<h2 class="text-3xl">I'm a <strong>Full-Stack</strong> web developer.</h2>
-		<div class="flex gap-2">
-			{#each skills as skill}
+	<div class="flex flex-col justify-center align-center md:align-left gap-4 md:gap-2">
+		<h1 class="text-5xl text-center md:text-left">Hey! I'm <strong>Andrew</strong>.</h1>
+		<h2 class="text-3xl text-center md:text-left">I'm a <strong>Full-Stack</strong> web developer.</h2>
+		<div class="whitespace-nowrap text-center md:text-left">
+			{#each skills as skill, index}
 				<a href={skill.href}>
-					<img src={skill.src} class="w-10" alt={skill.alt} />
+					<img src={skill.src} class="inline-block w-10" alt={skill.alt} />
 				</a>
+                {#if skillsHalfwayPoint === index + 1}
+                    <wbr /> <!-- this is a hack to make the skills wrap nicely on mobile -->
+                {/if}
 			{/each}
 		</div>
 		<div class="bottom-8">
