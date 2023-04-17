@@ -18,7 +18,7 @@
 </div>
 
 <div class="w-screen h-screen flex flex-col md:flex-row justify-center items-center p-6 gap-4 md:gap-8 fixed top-0 left-0">
-	<img src={ProfileImage} alt="Profile" class="rounded-full shadow-2xl w-32 h-32 md:w-64 md:h-64" />
+	<img src={ProfileImage} alt="Profile" class="rounded-full shadow-2xl w-32 h-32 md:w-48 md:h-48" />
 
 	<div class="flex flex-col justify-center align-center md:align-left gap-4 md:gap-2">
 		<h1 class="text-5xl text-center md:text-left">Hey! I'm <strong>Andrew</strong>.</h1>
