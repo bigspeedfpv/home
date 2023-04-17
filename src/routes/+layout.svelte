@@ -5,14 +5,17 @@
 
 <svelte:head>
 	<style uno:preflights uno:safelist global></style>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 </svelte:head>
 
-<div class="bg-gray-950 text-white">
+<div>
 	<slot />
 </div>
 
 <style>
-	* {
-		box-sizing: border-box;
-	}
+    :global(html) {
+        background-color: rgb(3 7 18);
+        color: white;
+    }
 </style>

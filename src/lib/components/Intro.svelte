@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ProfileImage from '$lib/assets/profile.png?w=175&h=175&webp'; // LSP complains here but it's a thing I pinky promise
+	import ProfileImage from '$lib/assets/profile.png?w=300&h=300&webp'; // LSP complains here but it's a thing I pinky promise
 
 	import skills from '$lib/skills';
     // This is a bit of a hack to get the skills to wrap nicely on smaller screens
@@ -18,7 +18,7 @@
 </div>
 
 <div class="w-screen h-screen flex flex-col md:flex-row justify-center items-center p-6 gap-4 md:gap-8 fixed top-0 left-0">
-	<img src={ProfileImage} alt="Profile" class="rounded-full shadow-2xl" />
+	<img src={ProfileImage} alt="Profile" class="rounded-full shadow-2xl w-32 h-32 md:w-64 md:h-64" />
 
 	<div class="flex flex-col justify-center align-center md:align-left gap-4 md:gap-2">
 		<h1 class="text-5xl text-center md:text-left">Hey! I'm <strong>Andrew</strong>.</h1>
@@ -26,7 +26,7 @@
 		<div class="whitespace-nowrap text-center md:text-left">
 			{#each skills as skill, index}
 				<a href={skill.href}>
-					<img src={skill.src} class="inline-block w-10" alt={skill.alt} />
+					<img src={skill.src} class="inline-block h-10 w-10" alt={skill.alt} />
 				</a>
                 {#if skillsHalfwayPoint === index + 1}
                     <wbr />

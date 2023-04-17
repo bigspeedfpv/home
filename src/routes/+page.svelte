@@ -8,8 +8,8 @@
 </script>
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<title>Andrew Brower</title>
+	<meta name="description" content="Andrew Brower (bigspeed)'s homepage." />
 </svelte:head>
 
 <section>
