@@ -9,7 +9,7 @@
 
 <svelte:head>
 	<title>Andrew Brower</title>
-    <link rel="canonical" href="https://bigspeed.me" />
+	<link rel="canonical" href="https://bigspeed.me" />
 	<meta name="description" content="Andrew Brower (bigspeed)'s homepage." />
 </svelte:head>
 

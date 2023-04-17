@@ -2,12 +2,34 @@
 	import ProfileImage from '$lib/assets/profile.png?w=300&h=300&webp'; // LSP complains here but it's a thing I pinky promise
 
 	import skills from '$lib/skills';
-    // This is a bit of a hack to get the skills to wrap nicely on smaller screens
-    // it'll add a break roughly halfway instead of at the first one that doesn't fit
-    let skillsHalfwayPoint = Math.ceil(skills.length / 2);
+	// This is a bit of a hack to get the skills to wrap nicely on smaller screens
+	// it'll add a break roughly halfway instead of at the first one that doesn't fit
+	let skillsHalfwayPoint = Math.ceil(skills.length / 2);
 
 	import type { Song } from '$lib/types';
 	export let data: { song: Song };
+
+	import IconGithub from '~icons/carbon/logo-github';
+	import IconLinkedin from '~icons/carbon/logo-linkedin';
+	import IconDiscord from '~icons/carbon/logo-discord';
+	import IconInstagram from '~icons/carbon/logo-instagram';
+	import IconYoutube from '~icons/carbon/logo-youtube';
+
+	const links = [
+		{ name: 'GitHub', icon: IconGithub, href: 'https://github.com/bigspeedfpv' },
+		{
+			name: 'LinkedIn',
+			icon: IconLinkedin,
+			href: 'https://www.linkedin.com/in/andrew-brower-6366a9251/'
+		},
+		{
+			name: 'Discord',
+			icon: IconDiscord,
+			href: 'https://discord.com/users/277822562116042753'
+		},
+		{ name: 'Instagram', icon: IconInstagram, href: 'https://www.instagram.com/bigspeedfpv/' },
+		{ name: 'YouTube', icon: IconYoutube, href: 'https://youtube.com/@bigspeedfpv' }
+	];
 </script>
 
 <!-- fancy blurred background gradient -->
@@ -17,31 +39,57 @@
 	/>
 </div>
 
-<div class="w-screen h-screen flex flex-col md:flex-row justify-center items-center p-6 gap-4 md:gap-8 fixed top-0 left-0">
-	<img src={ProfileImage} alt="Profile" class="rounded-full shadow-2xl w-32 h-32 md:w-48 md:h-48" />
+<div
+	class="w-screen h-screen flex flex-col md:flex-row justify-center items-center p-6 gap-4 md:gap-8 fixed top-0 left-0"
+>
+	<img
+		src={ProfileImage}
+		alt="Profile"
+		class="rounded-full shadow-2xl w-32 h-32 md:w-48 md:h-48"
+	/>
 
 	<div class="flex flex-col justify-center align-center md:align-left gap-4 md:gap-2">
 		<h1 class="text-5xl text-center md:text-left">Hey! I'm <strong>Andrew</strong>.</h1>
-		<h2 class="text-3xl text-center md:text-left">I'm a <strong>Full-Stack</strong> web developer.</h2>
+		<h2 class="text-3xl text-center md:text-left">
+			I'm a <strong>Full-Stack</strong> web developer.
+		</h2>
+
+		{#if data.song.isPlaying}
+			<a
+				href={data.song.songUrl}
+				target="_blank"
+				class="text-lg opacity-50 hover:opacity-75 transition text-center md:text-left -my-1"
+			>
+				<span>
+					Now Playing:
+					<strong>{data.song.artist} - {data.song.title}</strong>
+				</span>
+			</a>
+		{/if}
+
 		<div class="whitespace-nowrap text-center md:text-left">
 			{#each skills as skill, index}
 				<a href={skill.href}>
 					<img src={skill.src} class="inline-block h-10 w-10" alt={skill.alt} />
 				</a>
-                {#if skillsHalfwayPoint === index + 1}
-                    <wbr />
-                {/if}
+				{#if skillsHalfwayPoint === index + 1}
+					<wbr />
+				{/if}
 			{/each}
 		</div>
-		<div class="bottom-8">
-			{#if data.song.isPlaying}
-				<a href={data.song.songUrl} target="_blank">
-					<span class="text-xl opacity-50 hover:opacity-75 transition text-center md:text-left">
-						Now Playing:
-						<strong>{data.song.artist} - {data.song.title}</strong>
-					</span>
+
+		<!-- links -->
+		<div class="flex justify-center md:justify-start">
+			{#each links as link}
+				<a href={link.href} target="_blank" title={link.name}>
+					<svelte:component
+						this={link.icon}
+						width="40px"
+						height="40px"
+						class="opacity-50 hover:opacity-75 transition"
+					/>
 				</a>
-			{/if}
+			{/each}
 		</div>
 	</div>
 </div>

@@ -1,9 +1,14 @@
+// This site is deployed on Cloudflare Pages, NOT workers.
+// Pages supports Functions, but they need to be SvelteKit API endpoints,
+// NOT in the /functions directory.
+
 import {
 	SPOTIFY_CLIENT_ID,
 	SPOTIFY_CLIENT_SECRET,
 	SPOTIFY_REFRESH_TOKEN
 } from '$env/static/private';
 
+// btoa is deprecated in node but we're not running in node!
 const basic = btoa(`${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_SECRET}`);
 
 const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
@@ -36,12 +41,12 @@ const getNowPlaying = async () => {
 };
 
 const artistString = (artists: Artist[]): string => {
-    const combined = artists.map(a => a.name).join(', ');
+	const combined = artists.map((a) => a.name).join(', ');
 
-    // we only want the first artist's name if both combined are over 20 chars
-    if (combined.length > 20) return artists[0].name;
-    return combined;
-}
+	// we only want the first artist's name if both combined are over 20 chars
+	if (combined.length > 20) return artists[0].name;
+	return combined;
+};
 
 export async function GET() {
 	const response = await getNowPlaying();
@@ -67,7 +72,7 @@ export async function GET() {
 
 	const isPlaying = song.is_playing;
 	let title = song.item.name;
-	let artist = artistString(song.item.artists);
+	const artist = artistString(song.item.artists);
 	const songUrl = song.item.external_urls.spotify;
 
 	if (title.length > 25) {

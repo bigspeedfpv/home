@@ -5,7 +5,7 @@
 
 <svelte:head>
 	<style uno:preflights uno:safelist global></style>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </svelte:head>
 
 <div>
@@ -13,8 +13,8 @@
 </div>
 
 <style>
-    :global(html) {
-        background-color: rgb(3 7 18);
-        color: white;
-    }
+	:global(html) {
+		background-color: rgb(3 7 18);
+		color: white;
+	}
 </style>

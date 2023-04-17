@@ -1,5 +1,5 @@
 import type { PageServerLoad } from './$types';
-import { dev } from '$app/environment'
+import { dev } from '$app/environment';
 
 export const csr = dev; // homepage doesn't have any interactivity
 
