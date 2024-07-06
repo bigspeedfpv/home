@@ -1,4 +1,4 @@
-.DS_Store
+./**/.DS_Store
 node_modules
 /build
 /.svelte-kit
@@ -10,3 +10,5 @@ node_modules
 .output
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+.direnv/
+.devenv/

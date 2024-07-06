@@ -1,5 +1,6 @@
 <script lang="ts">
-	import ProfileImage from '$lib/assets/profile.png?w=300&h=300&webp'; // LSP complains here but it's a thing I pinky promise
+	// @ts-ignore
+	import ProfileImage from '$lib/assets/profile.png?w=300&h=300&webp'; // LS complains here but it's a thing I pinky promise
 
 	import skills from '$lib/skills';
 	// This is a bit of a hack to get the skills to wrap nicely on smaller screens
@@ -9,26 +10,30 @@
 	import type { Song } from '$lib/types';
 	export let data: { song: Song };
 
-	import IconGithub from '~icons/carbon/logo-github';
-	import IconLinkedin from '~icons/carbon/logo-linkedin';
-	import IconDiscord from '~icons/carbon/logo-discord';
-	import IconInstagram from '~icons/carbon/logo-instagram';
-	import IconYoutube from '~icons/carbon/logo-youtube';
+	import { icons } from '@iconify-json/carbon';
+	import { getIconData } from '@iconify/utils';
+	import Icon from '@iconify/svelte';
+
+	const i = (icon: string) => getIconData(icons, icon);
 
 	const links = [
-		{ name: 'GitHub', icon: IconGithub, href: 'https://github.com/bigspeedfpv' },
+		{ name: 'GitHub', iconData: 'carbon:logo-github', href: 'https://github.com/bigspeedfpv' },
 		{
 			name: 'LinkedIn',
-			icon: IconLinkedin,
+			icon: i('logo-linkedin'),
 			href: 'https://www.linkedin.com/in/andrew-brower-6366a9251/'
 		},
 		{
 			name: 'Discord',
-			icon: IconDiscord,
+			icon: i('logo-discord'),
 			href: 'https://discord.com/users/277822562116042753'
 		},
-		{ name: 'Instagram', icon: IconInstagram, href: 'https://www.instagram.com/bigspeedfpv/' },
-		{ name: 'YouTube', icon: IconYoutube, href: 'https://youtube.com/@bigspeedfpv' }
+		{
+			name: 'Instagram',
+			icon: i('logo-instagram'),
+			href: 'https://www.instagram.com/bigspeedfpv/'
+		},
+		{ name: 'YouTube', icon: i('logo-youtube'), href: 'https://youtube.com/@bigspeedfpv' }
 	];
 </script>
 
@@ -36,7 +41,7 @@
 <div class="w-screen h-screen fixed top-0 left-0 flex justify-center items-center">
 	<div
 		class="w-200 h-64 fixed bg-gradient-to-r from-teal-500 to-blue-500 opacity-30 filter blur-superxl rounded-oval"
-	/>
+	></div>
 </div>
 
 <div
@@ -82,8 +87,8 @@
 		<div class="flex justify-center md:justify-start">
 			{#each links as link}
 				<a href={link.href} target="_blank" title={link.name}>
-					<svelte:component
-						this={link.icon}
+					<Icon
+						icon={link.icon}
 						width="40px"
 						height="40px"
 						class="opacity-50 hover:opacity-75 transition"
