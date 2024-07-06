@@ -40,7 +40,7 @@
 <!-- fancy blurred background gradient -->
 <div class="w-screen h-screen fixed top-0 left-0 flex justify-center items-center">
 	<div
-		class="w-200 h-64 fixed bg-gradient-to-r from-teal-500 to-blue-500 opacity-30 filter blur-superxl rounded-oval"
+		class="w-[50rem] h-64 fixed bg-gradient-to-r from-teal-500 to-blue-500 opacity-30 blur-superxl rounded-oval"
 	></div>
 </div>
 
@@ -86,14 +86,16 @@
 		<!-- links -->
 		<div class="flex justify-center md:justify-start">
 			{#each links as link}
-				<a href={link.href} target="_blank" title={link.name}>
-					<Icon
-						icon={link.icon}
-						width="40px"
-						height="40px"
-						class="opacity-50 hover:opacity-75 transition"
-					/>
-				</a>
+				{#if link.icon}
+					<a href={link.href} target="_blank" title={link.name}>
+						<Icon
+							icon={link.icon}
+							width="40px"
+							height="40px"
+							class="opacity-50 hover:opacity-75 transition"
+						/>
+					</a>
+				{/if}
 			{/each}
 		</div>
 	</div>

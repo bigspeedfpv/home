@@ -1,10 +1,8 @@
 <script>
-	import '@unocss/reset/tailwind.css';
-	import 'uno.css';
+	import '../app.css';
 </script>
 
 <svelte:head>
-	<style uno:preflights uno:safelist global></style>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </svelte:head>
 
