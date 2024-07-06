@@ -14,7 +14,7 @@
     "@iconify-json/carbon": "^1.1.36",
     "@iconify/svelte": "^4.0.2",
     "@iconify/utils": "^2.1.25",
-    "@sveltejs/adapter-auto": "^3.2.2",
+    "@sveltejs/adapter-cloudflare": "^4.6.1",
     "@sveltejs/kit": "^2.5.18",
     "@types/node": "^20.14.10",
     "@typescript-eslint/eslint-plugin": "^7.15.0",
@@ -40,6 +40,10 @@
     "ress": "^5.0.2"
   },
   "trustedDependencies": [
-    "svelte-preprocess"
+    "@sveltejs/kit",
+    "esbuild",
+    "sharp",
+    "svelte-preprocess",
+    "workerd"
   ]
 }
