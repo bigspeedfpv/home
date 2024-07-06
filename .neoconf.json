@@ -1,0 +1,13 @@
+{
+	"svelte": {
+		"plugin": {
+			"svelte": {
+				"format": {
+					"config": {
+						"svelteBracketNewLine": false
+					}
+				}
+			}
+		}
+	}
+}

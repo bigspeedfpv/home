@@ -1,1 +1,5 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+.link-underline {
+	@apply underline decoration-white/0 hover:decoration-white transition-all duration-200;
+}

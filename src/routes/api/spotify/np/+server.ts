@@ -40,14 +40,6 @@ const getNowPlaying = async () => {
 	});
 };
 
-const artistString = (artists: Artist[]): string => {
-	const combined = artists.map((a) => a.name).join(', ');
-
-	// we only want the first artist's name if both combined are over 20 chars
-	if (combined.length > 20) return artists[0].name;
-	return combined;
-};
-
 export async function GET() {
 	const response = await getNowPlaying();
 
@@ -71,20 +63,32 @@ export async function GET() {
 	}
 
 	const isPlaying = song.is_playing;
-	let title = song.item.name;
-	const artist = artistString(song.item.artists);
-	const songUrl = song.item.external_urls.spotify;
 
-	if (title.length > 25) {
-		title = title.substring(0, 25) + '...';
+	const artists = song.item.artists.map((a: Artist) => ({
+		name: a.name,
+		url: a.external_urls.spotify
+	}));
+
+	const songData = {
+		title: song.item.name,
+		url: song.item.external_urls.spotify
+	};
+
+	const album = {
+		coverUrl: song.item.album.images[0].url,
+		url: song.item.album.external_urls.spotify
+	};
+
+	if (songData.title.length > 25) {
+		songData.title = songData.title.substring(0, 25) + '...';
 	}
 
 	return new Response(
 		JSON.stringify({
-			artist,
 			isPlaying,
-			songUrl,
-			title
+			song,
+			artists,
+			album
 		}),
 		{
 			headers: {

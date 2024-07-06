@@ -1,10 +1,15 @@
-export type HomeLoadData = {
-	song: Song;
-};
-
 export type Song = {
-	artist: string;
 	isPlaying: boolean;
-	songUrl: string;
-	title: string;
+	artists: {
+		name: string;
+		url: string;
+	}[];
+	song: {
+		title: string;
+		url: string;
+	};
+	album: {
+		coverUrl: string;
+		url: string;
+	};
 };
