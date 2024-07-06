@@ -39,6 +39,7 @@
 				class="w-10 h-10 rounded-md shadow-md" />
 		</a>
 		<div class="flex flex-col">
+			<span class="text-xs -mb-0.5 font-light opacity-55">Listening to</span>
 			<a href={song.song.url} target="_blank" class="font-bold link-underline -mb-1">
 				{song.song.title}
 			</a>
