@@ -42,58 +42,62 @@
 </svelte:head>
 
 <section>
-	<div class="w-screen h-screen flex justify-center overflow-hidden">
+	<div
+		class="w-screen h-screen pt-24 md:p-0 flex flex-col justify-start md:justify-center items-center overflow-hidden">
 		<!-- fancy blurred background gradient -->
-		<div class="w-screen h-screen fixed top-0 left-0 flex justify-center items-center">
+		<div class="grid">
 			<div
-				class="w-[50rem] h-64 fixed bg-gradient-to-r from-teal-500 to-blue-500 opacity-30 blur-superxl rounded-oval">
-			</div>
-		</div>
-
-		<div
-			class="w-screen h-screen flex flex-col md:flex-row justify-center items-center p-6 gap-4 md:gap-8 fixed top-0 left-0">
-			<enhanced:img
-				src="$lib/assets/profile.png"
-				alt="Profile"
-				class="rounded-full shadow-2xl w-32 h-32 md:w-48 md:h-48">
-			</enhanced:img>
-
-			<div class="flex flex-col justify-center align-center md:align-left gap-4 md:gap-2">
-				<h1 class="text-5xl text-center md:text-left">
-					Hey! I'm <strong>Andrew.</strong>
-				</h1>
-				<h2 class="text-3xl text-center md:text-left">
-					I'm a <strong>Software Engineer.</strong>
-				</h2>
-
-				<div class="text-center md:text-left">
-					{#each skillChunks as chunk}
-						<span class="whitespace-nowrap">
-							{#each chunk as skill}
-								<a href={skill.href}>
-									<img
-										src={skill.src}
-										class="inline-block h-10 w-10 mx-0.5"
-										alt={skill.alt} />
-								</a>
-							{/each}
-						</span>
-					{/each}
+				class="grid-initial w-full h-full flex flex-col justify-start md:justify-center items-center">
+				<div
+					class="w-[50rem] h-64 fixed bg-gradient-to-r from-teal-500 to-blue-500 opacity-30 blur-superxl rounded-oval">
 				</div>
+			</div>
 
-				<!-- links -->
-				<div class="flex justify-center md:justify-start">
-					{#each links as link}
-						{#if link.icon}
-							<a href={link.href} target="_blank" title={link.name}>
-								<Icon
-									icon={link.icon}
-									width="40px"
-									height="40px"
-									class="opacity-50 hover:opacity-75 transition" />
-							</a>
-						{/if}
-					{/each}
+			<div
+				class="z-10 grid-initial flex flex-col md:flex-row justify-start md:justify-center items-center p-6 gap-4 md:gap-8">
+				<enhanced:img
+					src="$lib/assets/profile.png"
+					alt="Profile"
+					class="rounded-full shadow-2xl w-32 h-32 md:w-48 md:h-48">
+				</enhanced:img>
+
+				<div class="flex flex-col justify-center align-center md:align-left gap-4 md:gap-2">
+					<h1 class="text-5xl text-center md:text-left">
+						Hey! I'm <strong>Andrew.</strong>
+					</h1>
+					<h2 class="text-3xl text-center md:text-left">
+						I'm a <strong>Software Engineer.</strong>
+					</h2>
+
+					<div class="text-center md:text-left">
+						{#each skillChunks as chunk}
+							<span class="whitespace-nowrap">
+								{#each chunk as skill}
+									<a href={skill.href}>
+										<img
+											src={skill.src}
+											class="inline-block h-10 w-10 mx-0.5"
+											alt={skill.alt} />
+									</a>
+								{/each}
+							</span>
+						{/each}
+					</div>
+
+					<!-- links -->
+					<div class="flex justify-center md:justify-start">
+						{#each links as link}
+							{#if link.icon}
+								<a href={link.href} target="_blank" title={link.name}>
+									<Icon
+										icon={link.icon}
+										width="40px"
+										height="40px"
+										class="opacity-50 hover:opacity-75 transition" />
+								</a>
+							{/if}
+						{/each}
+					</div>
 				</div>
 			</div>
 		</div>
@@ -107,5 +111,10 @@
 
 	.rounded-oval {
 		border-radius: 50%;
+	}
+
+	.grid-initial {
+		grid-row: 1;
+		grid-column: 1;
 	}
 </style>
