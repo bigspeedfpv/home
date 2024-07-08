@@ -31,7 +31,7 @@
 
 <div class="flex items-end justify-center fixed left-0 bottom-0 mb-4 overflow-hidden w-full">
 	<div
-		class="flex gap-4 justify-center items-center px-4 py-2.5 border-1 border-white/10 rounded-md shadow-lg bg-gray-900/5 backdrop-blur-lg">
+		class="flex gap-4 justify-center items-center px-4 py-2 border-1 border-white/10 rounded-md shadow-lg bg-gray-900/5 backdrop-blur-lg">
 		<a href={song.album.url} target="_blank">
 			<img
 				src={song.album.coverUrl}

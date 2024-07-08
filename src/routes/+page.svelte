@@ -56,12 +56,10 @@
 
 			<div class="flex flex-col justify-center align-center md:align-left gap-4 md:gap-2">
 				<h1 class="text-5xl text-center md:text-left">
-					Hey! I'm <strong>Andrew</strong>
-					.
+					Hey! I'm <strong>Andrew.</strong>
 				</h1>
 				<h2 class="text-3xl text-center md:text-left">
-					I'm a <strong>Full-Stack</strong>
-					web developer.
+					I'm a <strong>Software Engineer.</strong>
 				</h2>
 
 				<div class="whitespace-nowrap text-center md:text-left">
