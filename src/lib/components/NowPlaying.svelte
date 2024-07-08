@@ -36,7 +36,7 @@
 			<img
 				src={song.album.coverUrl}
 				alt="Album cover for {song.song.title}"
-				class="w-10 h-10 rounded-md shadow-md" />
+				class="w-10 h-10 shadow-md" />
 		</a>
 		<div class="flex flex-col">
 			<span class="text-xs -mb-0.5 font-light opacity-55">Listening to</span>

@@ -2,7 +2,11 @@
 	import skills from '$lib/skills';
 	// This is a bit of a hack to get the skills to wrap nicely on smaller screens
 	// it'll add a break roughly halfway instead of at the first one that doesn't fit
-	let skillsHalfwayPoint = Math.ceil(skills.length / 2);
+	const skillsHalfwayPoint = Math.ceil(skills.length / 2);
+	const skillChunks = [
+		skills.slice(0, skillsHalfwayPoint),
+		skills.slice(skillsHalfwayPoint, skills.length)
+	];
 
 	import { icons } from '@iconify-json/carbon';
 	import { getIconData } from '@iconify/utils';
@@ -62,14 +66,18 @@
 					I'm a <strong>Software Engineer.</strong>
 				</h2>
 
-				<div class="whitespace-nowrap text-center md:text-left">
-					{#each skills as skill, index}
-						<a href={skill.href}>
-							<img src={skill.src} class="inline-block h-10 w-10" alt={skill.alt} />
-						</a>
-						{#if skillsHalfwayPoint === index + 1}
-							<wbr />
-						{/if}
+				<div class="text-center md:text-left">
+					{#each skillChunks as chunk}
+						<span class="whitespace-nowrap">
+							{#each chunk as skill}
+								<a href={skill.href}>
+									<img
+										src={skill.src}
+										class="inline-block h-10 w-10 mx-0.5"
+										alt={skill.alt} />
+								</a>
+							{/each}
+						</span>
 					{/each}
 				</div>
 
