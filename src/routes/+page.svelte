@@ -15,7 +15,7 @@
 	const i = (icon: string) => getIconData(icons, icon);
 
 	const links = [
-		{ name: 'GitHub', iconData: 'carbon:logo-github', href: 'https://github.com/bigspeedfpv' },
+		{ name: 'GitHub', iconData: i('logo-github'), href: 'https://github.com/bigspeedfpv' },
 		{
 			name: 'LinkedIn',
 			icon: i('logo-linkedin'),
