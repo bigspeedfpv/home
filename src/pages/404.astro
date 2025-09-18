@@ -1,0 +1,23 @@
+---
+import { Picture } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+
+import cheese from "../assets/cheese.png";
+---
+
+<Layout title="404">
+  <div class="w-full flex items-center justify-center flex-col gap-4">
+    <div class="flex items-center justify-center flex-col">
+      <h1 class="text-xl font-bold">404 - Not Found</h1>
+      <span>enjoy a picture of my cat instead</span>
+    </div>
+    <Picture
+      src={cheese}
+      formats={["avif", "webp"]}
+      alt="An orange cat with a surprised expression"
+      layout="constrained"
+      width={750}
+      height={500}
+    />
+  </div>
+</Layout>

@@ -1,0 +1,18 @@
+---
+const { href, text } = Astro.props;
+const currentPath = Astro.url.pathname;
+
+const isExternal = href.startsWith("https://");
+---
+
+<a href={href} target={isExternal ? "_blank" : "_self"}>
+  <div
+    class={
+      "inline-block relative" +
+      (currentPath === href 
+        ? " after:w-full after:h-0.5 after:absolute after:-bottom-1 after:bg-black after:left-0"
+        : ""
+  )}>
+    {text}
+  </div>
+</a>
