@@ -3,32 +3,32 @@
 @theme {
   --breakpoint-xs: 28rem;
   --default-font-family: var(--font-display);
-  --font-display: "Libre Baskerville", Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif;
+  --font-display: "Libre Baskerville", Charter, "Bitstream Charter", "Sitka Text", Cambria, serif;
   --color-sepia: #faeac5;
 }
 
 @font-face {
-  font-family: 'Libre Baskerville';
-  src: url('/fonts/LibreBaskerville-Regular.woff2') format('woff2'),
-       url('/fonts/LibreBaskerville-Regular.ttf') format('truetype');
+  font-family: "Libre Baskerville";
+  src: url("/fonts/LibreBaskerville-Regular.woff2") format("woff2"),
+       url("/fonts/LibreBaskerville-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Libre Baskerville';
-  src: url('/fonts/LibreBaskerville-Bold.woff2') format('woff2'),
-       url('/fonts/LibreBaskerville-Bold.ttf') format('truetype');
+  font-family: "Libre Baskerville";
+  src: url("/fonts/LibreBaskerville-Bold.woff2") format("woff2"),
+       url("/fonts/LibreBaskerville-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Libre Baskerville';
-  src: url('/fonts/LibreBaskerville-Italic.woff2') format('woff2'),
-       url('/fonts/LibreBaskerville-Italic.ttf') format('truetype');
+  font-family: "Libre Baskerville";
+  src: url("/fonts/LibreBaskerville-Italic.woff2") format("woff2"),
+       url("/fonts/LibreBaskerville-Italic.ttf") format("truetype");
   font-weight: 400;
   font-style: italic;
   font-display: swap;

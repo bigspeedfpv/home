@@ -7,9 +7,10 @@ const { title } = Astro.props;
 const navButtons = [
   { title: "home", route: "/" },
   { title: "blog", route: "/blog" },
-  { title: "linkedin", route: "https://www.linkedin.com/in/andrewbrower" },
   { title: "github", route: "https://github.com/bigspeedfpv" },
 ];
+
+const isHome = Astro.url.pathname === "/";
 ---
 
 <!doctype html>
@@ -23,8 +24,9 @@ const navButtons = [
 	</head>
 	<body class="bg-sepia flex justify-center">
     <div class="p-12 w-full max-w-[750px]">
-      <header class="my-8 flex flex-row justify-between items-center flex-wrap">
-        <h1 class="font-bold text-2xl mr-4">Andrew Brower</h1>
+      <header class="my-8 h-8 flex flex-row justify-between items-center flex-wrap">
+        <!-- the home page has its own header! -->
+        <h1 class="font-bold text-2xl mr-4">{isHome ? "" : "Andrew Brower"}</h1>
         <div class="flex gap-4 flex-wrap">
           {navButtons.map(({title, route}) => <NavButton href={route}, text={title} />)}
         </div>
