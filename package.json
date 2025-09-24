@@ -1,23 +1,28 @@
 {
-	"name": "home",
-	"type": "module",
-	"version": "0.0.1",
-	"license": "MIT",
-	"scripts": {
-		"dev": "astro dev",
-		"build": "astro build",
-		"preview": "astro preview",
-		"astro": "astro"
-	},
-	"dependencies": {
-		"@tailwindcss/vite": "^4.1.13",
-		"astro": "^5.13.7",
-		"tailwindcss": "^4.1.13"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "2.2.4"
-	},
-	"trustedDependencies": [
-		"@tailwindcss/oxide"
-	]
+  "name": "home",
+  "type": "module",
+  "version": "0.0.1",
+  "license": "MIT",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.13",
+    "astro": "^5.13.7",
+    "tailwindcss": "^4.1.13"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.2.4",
+    "wrangler": "^4.39.0"
+  },
+  "trustedDependencies": [
+    "@tailwindcss/oxide",
+    "esbuild",
+    "sharp",
+    "workerd"
+  ],
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
