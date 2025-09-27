@@ -38,7 +38,7 @@ pub fn start(_app, _type) -> Result(process.Pid, actor.StartError) {
 
   let ratelimit_child =
     supervision.worker(fn() {
-      Ok(actor.Started(ratelimiter.spawn_link(ratelimit_name, 2, 10_000), Nil))
+      Ok(actor.Started(ratelimiter.spawn_link(ratelimit_name, 3, 5000), Nil))
     })
 
   let spotify_child =

@@ -31,6 +31,7 @@ pub fn supervised(
   wisp_mist.handler(fn(req) { router(req, ctx) }, secret_key_base)
   |> mist.new
   |> mist.port(8000)
+  |> mist.bind("0.0.0.0")
   |> mist.supervised
 }
 
@@ -50,7 +51,7 @@ fn middleware(
 fn router(req: wisp.Request, ctx: Context) -> wisp.Response {
   use req <- middleware(req, ctx)
   case wisp.path_segments(req) {
-    ["now-playing"] -> now_playing(req, ctx)
+    [] -> now_playing(req, ctx)
     _ -> wisp.not_found()
   }
 }
@@ -58,7 +59,10 @@ fn router(req: wisp.Request, ctx: Context) -> wisp.Response {
 fn now_playing(_req: wisp.Request, ctx: Context) -> wisp.Response {
   let now_playing = actor.call(ctx.status_subject, 250, status.Get)
   let resp = status_to_json(now_playing)
-  wisp.json_response(json.to_string(resp), 200)
+
+  json.to_string(resp)
+  |> wisp.json_response(200)
+  |> wisp.set_header("Cache-Control", "public, max-age=15")
 }
 
 fn status_to_json(
@@ -72,21 +76,12 @@ fn status_to_json(
       let status.CurrentlyPlaying(song:, set_at:) = currently_playing
       let status.Song(artists:, duration_ms:, progress_ms:, url:, name:) = song
 
-      // add the time since progress was recorded to the progress bar :3
-      // this doesn't make a huge difference actually unless i increase the refresh timeout thing
-      // 0 <= progress <= duration_ms
-      // NOTE: set_at is in SECONDS!
-      let interpolated_progress =
-        int.min(
-          duration_ms,
-          progress_ms + { int.max(0, util.now() - set_at) * 1000 },
-        )
-
       json.object([
         #("playing", json.bool(True)),
         #("artists", json.array(artists, artist_to_json)),
         #("duration_ms", json.int(duration_ms)),
-        #("progress_ms", json.int(interpolated_progress)),
+        #("progress_ms", json.int(progress_ms)),
+        #("since", json.int(set_at)),
         #("url", json.string(url)),
         #("name", json.string(name)),
       ])
