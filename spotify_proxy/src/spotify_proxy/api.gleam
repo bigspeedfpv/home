@@ -1,30 +1,54 @@
 import gleam/erlang/process
 import gleam/int
 import gleam/json
+import gleam/list
 import gleam/option.{type Option, None, Some}
 import gleam/otp/actor
+import gleam/result
+import gleam/string
 import mist
+import spotify_proxy/ratelimiter
 import spotify_proxy/status
 import spotify_proxy/util
 import wisp
 import wisp/wisp_mist
 
 type Context {
-  Context(status_subject: process.Subject(status.Msg))
+  Context(
+    status_subject: process.Subject(status.Msg),
+    ratelimit_subject: process.Subject(ratelimiter.Msg),
+  )
 }
 
-pub fn supervised(status_subject: process.Subject(status.Msg)) {
+pub fn supervised(
+  status_subject: process.Subject(status.Msg),
+  ratelimit_subject: process.Subject(ratelimiter.Msg),
+) {
   let secret_key_base = wisp.random_string(64)
 
-  let ctx = Context(status_subject:)
+  let ctx = Context(status_subject:, ratelimit_subject:)
 
-  wisp_mist.handler(fn(req) { handle_request(req, ctx) }, secret_key_base)
+  wisp_mist.handler(fn(req) { router(req, ctx) }, secret_key_base)
   |> mist.new
   |> mist.port(8000)
   |> mist.supervised
 }
 
-fn handle_request(req: wisp.Request, ctx: Context) -> wisp.Response {
+fn middleware(
+  req: wisp.Request,
+  ctx: Context,
+  handle_request: fn(wisp.Request) -> wisp.Response,
+) -> wisp.Response {
+  use <- wisp.log_request(req)
+  use <- wisp.rescue_crashes
+  use req <- wisp.handle_head(req)
+  use req <- wisp.csrf_known_header_protection(req)
+  use <- ratelimit(req, ctx)
+  handle_request(req)
+}
+
+fn router(req: wisp.Request, ctx: Context) -> wisp.Response {
+  use req <- middleware(req, ctx)
   case wisp.path_segments(req) {
     ["now-playing"] -> now_playing(req, ctx)
     _ -> wisp.not_found()
@@ -76,4 +100,24 @@ fn artist_to_json(artist: status.Artist) -> json.Json {
     #("url", json.string(url)),
     #("name", json.string(name)),
   ])
+}
+
+fn ratelimit(
+  req: wisp.Request,
+  ctx: Context,
+  next: fn() -> wisp.Response,
+) -> wisp.Response {
+  let ip =
+    req.headers
+    |> list.find_map(fn(header) {
+      case string.lowercase(header.0) {
+        h if h == "x-forwarded-for" -> Ok(header.1)
+        _ -> Error(Nil)
+      }
+    })
+    |> result.unwrap(req.host)
+  case actor.call(ctx.ratelimit_subject, 200, ratelimiter.Take(_, ip)) {
+    True -> next()
+    False -> wisp.response(429)
+  }
 }

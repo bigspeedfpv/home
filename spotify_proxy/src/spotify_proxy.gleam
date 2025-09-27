@@ -6,6 +6,7 @@ import gleam/otp/supervision
 import gleam/result
 import logging
 import spotify_proxy/api
+import spotify_proxy/ratelimiter
 import spotify_proxy/spotify
 import spotify_proxy/status
 import spotify_proxy/util
@@ -29,8 +30,16 @@ pub fn start(_app, _type) -> Result(process.Pid, actor.StartError) {
   //
   // gg?
 
+  let ratelimit_name = process.new_name("ratelimiter")
+  let ratelimit_subject = process.named_subject(ratelimit_name)
+
   let status_name = process.new_name("spotify_status")
   let status_subject = process.named_subject(status_name)
+
+  let ratelimit_child =
+    supervision.worker(fn() {
+      Ok(actor.Started(ratelimiter.spawn_link(ratelimit_name, 2, 10_000), Nil))
+    })
 
   let spotify_child =
     supervision.worker(fn() {
@@ -47,10 +56,11 @@ pub fn start(_app, _type) -> Result(process.Pid, actor.StartError) {
       status.spawn_link(status_name) |> result.map(actor.Started(_, Nil))
     })
 
-  let api_child = api.supervised(status_subject)
+  let api_child = api.supervised(status_subject, ratelimit_subject)
 
   let res =
     sup.new(sup.OneForOne)
+    |> sup.add(ratelimit_child)
     |> sup.add(spotify_child)
     |> sup.add(status_child)
     |> sup.add(api_child)
