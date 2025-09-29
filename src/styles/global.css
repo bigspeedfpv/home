@@ -10,26 +10,30 @@
 @font-face {
   font-family: "Libre Baskerville";
   src: url("/fonts/LibreBaskerville-Regular.woff2") format("woff2"),
-       url("/fonts/LibreBaskerville-Regular.ttf") format("truetype");
+    url("/fonts/LibreBaskerville-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
   font-family: "Libre Baskerville";
   src: url("/fonts/LibreBaskerville-Bold.woff2") format("woff2"),
-       url("/fonts/LibreBaskerville-Bold.ttf") format("truetype");
+    url("/fonts/LibreBaskerville-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
   font-family: "Libre Baskerville";
   src: url("/fonts/LibreBaskerville-Italic.woff2") format("woff2"),
-       url("/fonts/LibreBaskerville-Italic.ttf") format("truetype");
+    url("/fonts/LibreBaskerville-Italic.ttf") format("truetype");
   font-weight: 400;
   font-style: italic;
-  font-display: swap;
+  font-display: block;
+}
+
+:root {
+  font-family: var(--font-display);
 }
