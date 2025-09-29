@@ -31,7 +31,7 @@ const isHome = Astro.url.pathname === "/";
           {navButtons.map(({title, route}) => <NavButton href={route}, text={title} />)}
         </div>
       </header>
-      <main>
+      <main class="relative">
     		<slot />
       </main>
     </div>

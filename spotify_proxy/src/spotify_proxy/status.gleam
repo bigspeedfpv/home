@@ -65,9 +65,14 @@ pub type Song {
     progress_ms: Int,
     url: String,
     name: String,
+    images: List(Image),
   )
 }
 
 pub type Artist {
   Artist(url: String, name: String)
+}
+
+pub type Image {
+  Image(url: String, height: Int, width: Int)
 }

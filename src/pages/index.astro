@@ -1,8 +1,10 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import NowPlaying from "../components/NowPlaying.tsx"
 ---
 
 <Layout title="Home">
-<h1 class="text-4xl font-bold">Andrew Brower</h1>
-<h2 class="text-xl italic">Software Engineer</h2>
+  <h1 class="text-4xl font-bold">Andrew Brower</h1>
+  <h2 class="text-xl italic">Software Engineer</h2>
+  <NowPlaying client:only="solid-js" />
 </Layout>

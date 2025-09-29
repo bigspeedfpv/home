@@ -1,5 +1,4 @@
 import gleam/erlang/process
-import gleam/int
 import gleam/json
 import gleam/list
 import gleam/option.{type Option, None, Some}
@@ -9,7 +8,6 @@ import gleam/string
 import mist
 import spotify_proxy/ratelimiter
 import spotify_proxy/status
-import spotify_proxy/util
 import wisp
 import wisp/wisp_mist
 
@@ -44,6 +42,7 @@ fn middleware(
   use <- wisp.rescue_crashes
   use req <- wisp.handle_head(req)
   use req <- wisp.csrf_known_header_protection(req)
+  use <- default_cors()
   use <- ratelimit(req, ctx)
   handle_request(req)
 }
@@ -74,7 +73,14 @@ fn status_to_json(
     }
     Some(currently_playing) -> {
       let status.CurrentlyPlaying(song:, set_at:) = currently_playing
-      let status.Song(artists:, duration_ms:, progress_ms:, url:, name:) = song
+      let status.Song(
+        artists:,
+        duration_ms:,
+        progress_ms:,
+        url:,
+        name:,
+        images:,
+      ) = song
 
       json.object([
         #("playing", json.bool(True)),
@@ -84,6 +90,7 @@ fn status_to_json(
         #("since", json.int(set_at)),
         #("url", json.string(url)),
         #("name", json.string(name)),
+        #("images", json.array(images, image_to_json)),
       ])
     }
   }
@@ -94,6 +101,14 @@ fn artist_to_json(artist: status.Artist) -> json.Json {
   json.object([
     #("url", json.string(url)),
     #("name", json.string(name)),
+  ])
+}
+
+fn image_to_json(image: status.Image) -> json.Json {
+  json.object([
+    #("url", json.string(image.url)),
+    #("width", json.int(image.width)),
+    #("height", json.int(image.height)),
   ])
 }
 
@@ -115,4 +130,8 @@ fn ratelimit(
     True -> next()
     False -> wisp.response(429)
   }
+}
+
+fn default_cors(next: fn() -> wisp.Response) -> wisp.Response {
+  next() |> wisp.set_header("Access-Control-Allow-Origin", "*")
 }

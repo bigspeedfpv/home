@@ -236,11 +236,29 @@ fn song_decoder(progress_ms: Int) -> decode.Decoder(status.Song) {
   use duration_ms <- decode.field("duration_ms", decode.int)
   use url <- decode.subfield(["external_urls", "spotify"], decode.string)
   use name <- decode.field("name", decode.string)
-  decode.success(status.Song(artists:, duration_ms:, progress_ms:, url:, name:))
+  use images <- decode.subfield(
+    ["album", "images"],
+    decode.list(image_decoder()),
+  )
+  decode.success(status.Song(
+    artists:,
+    duration_ms:,
+    progress_ms:,
+    url:,
+    name:,
+    images:,
+  ))
 }
 
 fn artist_decoder() -> decode.Decoder(status.Artist) {
   use url <- decode.subfield(["external_urls", "spotify"], decode.string)
   use name <- decode.field("name", decode.string)
   decode.success(status.Artist(url:, name:))
+}
+
+fn image_decoder() -> decode.Decoder(status.Image) {
+  use url <- decode.field("url", decode.string)
+  use width <- decode.field("width", decode.int)
+  use height <- decode.field("height", decode.int)
+  decode.success(status.Image(url:, width:, height:))
 }
