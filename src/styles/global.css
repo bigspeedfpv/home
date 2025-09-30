@@ -37,3 +37,11 @@
 :root {
   font-family: var(--font-display);
 }
+
+strong {
+  @apply font-bold;
+}
+
+p {
+  @apply my-2;
+}

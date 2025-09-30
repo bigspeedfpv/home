@@ -4,7 +4,23 @@ import NowPlaying from "../components/NowPlaying.tsx"
 ---
 
 <Layout title="Home">
-  <h1 class="text-4xl font-bold">Andrew Brower</h1>
-  <h2 class="text-xl italic">Software Engineer</h2>
   <NowPlaying client:only="solid-js" />
+
+  <div class="mb-6">
+    <h1 class="text-4xl font-bold">Andrew Brower</h1>
+    <h2 class="text-xl italic">Software Engineer</h2>
+  </div>
+      
+  <p>I'm <strong>Andrew</strong>, a software engineer based in <strong>North Carolina</strong>.</p>
+  <p>
+    I specialize in <strong>systems</strong> and <strong>web development</strong> and I'm skilled in
+    lots of languages, including <strong>Rust</strong>, <strong>TypeScript</strong>, <strong>Go</strong>,
+    and <strong>Kotlin</strong>. Check out my
+    <a target="_blank" href="https://github.com/bigspeedfpv" class="font-bold underline">GitHub</a>
+    to see some of my projects!
+  </p>
+  <p>
+    Recently, I've been playing with <strong>Gleam</strong>, a strongly-typed functional language that
+    runs on the Erlang VM. It's powering this site's Spotify widget.
+  </p>
 </Layout>

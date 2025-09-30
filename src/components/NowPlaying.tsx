@@ -28,7 +28,7 @@ const NowPlaying: Component = () => {
 	// this will need a style rework to make it look good when appearing/disappearing
 
 	const artistLink = (artist: Artist) => (
-		<strong class="font-bold">
+		<strong>
 			<a target="_blank" href={artist.url}>
 				{artist.name}
 			</a>
