@@ -29,7 +29,9 @@ const NowPlaying: Component = () => {
 
 	const artistLink = (artist: Artist) => (
 		<strong class="font-bold">
-			<a href={artist.url}>{artist.name}</a>
+			<a target="_blank" href={artist.url}>
+				{artist.name}
+			</a>
 		</strong>
 	);
 
@@ -62,7 +64,11 @@ const NowPlaying: Component = () => {
 					/>
 					<div class="flex flex-col">
 						<span class="text-xs opacity-50">Listening to</span>
-						<span class="font-bold">{status().name}</span>
+						<span class="font-bold">
+							<a target="_blank" href={status().url}>
+								{status().name}
+							</a>
+						</span>
 						<span class="text-xs">by {artistLine()}</span>
 					</div>
 				</div>
