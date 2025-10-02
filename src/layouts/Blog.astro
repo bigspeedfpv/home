@@ -1,0 +1,14 @@
+---
+import Layout from "./Layout.astro";
+import SubtitledHeading from "../components/SubtitledHeading.astro";
+import Prose from "../components/Prose.astro";
+
+const { frontmatter } = Astro.props
+---
+
+<Layout>
+  <SubtitledHeading heading={frontmatter.title} subtitle={frontmatter.description} />
+  <Prose>
+    <slot />
+  </Prose>
+</Layout>

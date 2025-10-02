@@ -1,21 +1,46 @@
 ---
-layout: "../layouts/Layout.astro"
+layout: "../layouts/Blog.astro"
+title: Andrew Brower
+description: Software Engineer
 ---
 
-import SubtitledHeading from "../components/SubtitledHeading.astro";
+import Link from "../components/Link.astro";
 import NowPlaying from "../components/NowPlaying.tsx";
 
-<SubtitledHeading heading="Andrew Brower" subtitle="Software Engineer" />
-
-<div class="not-prose">
-<NowPlaying />
-</div>
+<NowPlaying client:load />
       
-I'm **Andrew**, a software engineer based in **North Carolina**.
+Hi! I'm **Andrew**, a software engineer based in **North Carolina**.
 
 I specialize in **systems** and **web development** and I'm skilled in
 lots of languages, including **Rust**, **TypeScript**, **Go**, and **Kotlin**.
-Check out my [**GitHub**](https://github.com/bigspeedfpv) to see some of my projects!
+Check out my <Link href="https://github.com/bigspeedfpv">**GitHub**</Link> to see some of my projects!
 
-Recently, I've been playing with [**Gleam**](https://gleam.run), a strongly-typed
-functional language that runs on the Erlang VM. It's powering this site's Spotify widget.
+# Contact Me
+Email: [bigspeedfpv@gmail.com](mailto:bigspeedfpv@gmail.com) \
+Discord: <Link href="https://discord.com/users/277822562116042753">@us.east.1</Link>
+
+# Some facts about me
+- I'm a mostly self-taught developer.
+  - In my free time, I like learning new languages.
+  - Functional languages are my current obsession; Rust and OCaml are some of my favorites.
+  - Most of my personal projects are made to teach myself how to use new tech.
+  - Recently, I've been playing with <Link href="https://gleam.run">**Gleam**</Link>. It's powering this site's Spotify widget!
+- I enjoy reimplementing things in novel ways.
+  - Check out <Link href="https://github.com/xoogware/crawlspace">**Crawlspace**</Link>, a scriptable Minecraft server I'm working on.
+  - Tools that make games more fun are my favorites to work on.
+- I race FPV drones. <Link href="https://www.youtube.com/watch?v=Umm2uH4FkZQ">**Here's a video**</Link>!
+  - I've placed within the top 20 pilots at major events like MultiGP IO 2025.
+  - I'm also trying to get into freestyle and cinematic flying.
+
+# ...and some opinions
+- Programming should be enjoyable
+  - Development environments matter for productivity
+  - ...but there's no "correct" setup
+- Everyone should try functional programming
+  - Even if you don't stick with it, it'll change your thought process
+- It's okay to be unsure - it builds critical thinking
+- AI is an aid for engineers, not a replacement
+  - It's not your friend, either
+  - Relying on it to think for you will only make your life harder
+  - Knowing how to research is more necessary now than ever
+- Trans rights are human rights 🏳️‍⚧️

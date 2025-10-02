@@ -1,0 +1,44 @@
+@reference "../styles/global.css";
+
+.prose {
+  @apply text-black dark:text-zinc-100/80;
+}
+
+.prose p {
+  @apply my-3;
+}
+
+.prose strong,
+.prose h1,
+.prose h2,
+.prose h3 {
+  @apply font-bold text-black dark:text-zinc-100/90;
+}
+
+.prose h1 {
+  @apply text-2xl mt-8 mb-4;
+}
+
+.prose h2 {
+  @apply text-xl mt-6 mb-4;
+}
+
+.prose h3 {
+  @apply text-lg mt-6 mb-4;
+}
+
+.prose ul {
+  @apply list-disc;
+}
+
+.prose li+li {
+  @apply mt-1;
+}
+
+.prose li>ul {
+  @apply pl-6 mt-1;
+}
+
+.prose a {
+  @apply underline hover:decoration-2;
+}
