@@ -21,9 +21,9 @@ const isHome = Astro.url.pathname === "/";
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title ? `${title} - Andrew Brower` : "Andrew Brower"}</title>
-    <link rel="preload" href="/fonts/LibreBaskerville-Regular.woff2" as="font" type="font/woff2" />
-    <link rel="preload" href="/fonts/LibreBaskerville-Bold.woff2" as="font" type="font/woff2" />
-    <link rel="preload" href="/fonts/LibreBaskerville-Italic.woff2" as="font" type="font/woff2" />
+    <link rel="preload" href="/fonts/LibreBaskerville-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/LibreBaskerville-Bold.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/LibreBaskerville-Italic.woff2" as="font" type="font/woff2" crossorigin />
 	</head>
 	<body class="bg-sepia dark:bg-zinc-900 dark:text-zinc-100 flex justify-center font-display">
     <div class="p-12 w-full max-w-[750px]">
