@@ -29,7 +29,7 @@ const isHome = Astro.url.pathname === "/";
     <div class="p-12 w-full max-w-[750px]">
       <header class="my-8 h-8 flex flex-row justify-between items-center flex-wrap">
         <!-- the home page has its own header! -->
-        <h1 class="font-bold text-2xl mr-4">{isHome ? "" : "Andrew Brower"}</h1>
+        <h1 class="font-bold text-2xl mr-4">{isHome ? "" : <a href="/">Andrew Brower</a>}</h1>
         <div class="flex gap-4 flex-wrap">
           {navButtons.map(({title, route}) => <NavButton href={route}, text={title} />)}
         </div>
