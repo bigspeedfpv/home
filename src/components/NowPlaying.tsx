@@ -29,7 +29,7 @@ const NowPlaying: Component = () => {
 
 	const artistLink = (artist: Artist) => (
 		<strong>
-			<a target="_blank" href={artist.url}>
+			<a target="_blank" href={artist.url} class="!no-underline">
 				{artist.name}
 			</a>
 		</strong>
@@ -61,8 +61,8 @@ const NowPlaying: Component = () => {
 			{(status) => (
 				<div
 					class={`
-						relative mb-4 -left-2 md:left-auto md:absolute md:top-0 md:right-0 border-[1px] border-black/20
-						p-2 rounded-2xl flex flex-row gap-4 align-center items-center w-max max-w-full md:max-w-82 h-16 md:shadow-md
+						relative mb-4 -left-2 md:left-auto md:absolute md:top-0 md:right-0 border-[1px] border-black/20 dark:border-white/20
+						p-2 rounded-2xl flex flex-row gap-4 align-center items-center w-max max-w-full md:max-w-82 h-16 md:shadow-md dark:shadow-none
 					`}
 				>
 					<img
@@ -75,7 +75,7 @@ const NowPlaying: Component = () => {
 							Listening to
 						</span>
 						<span class="font-bold leading-4 overflow-ellipsis line-clamp-1 text-sm">
-							<a target="_blank" href={status().url}>
+							<a target="_blank" href={status().url} class="!no-underline">
 								{status().name}
 							</a>
 						</span>
