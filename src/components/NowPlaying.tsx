@@ -71,7 +71,7 @@ const NowPlaying: Component = () => {
 						class="w-12 h-12 rounded-lg border-[1px] border-black/10"
 					/>
 					<div class="flex flex-col gap-0 mr-2">
-						<span class="text-xs opacity-50 line-clamp-1 overflow-ellipsis">
+						<span class="text-xs opacity-75 line-clamp-1 overflow-ellipsis">
 							Listening to
 						</span>
 						<span class="font-bold leading-4 overflow-ellipsis line-clamp-1 text-sm">
