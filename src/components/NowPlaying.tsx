@@ -9,7 +9,7 @@ import {
 const NowPlaying: Component = () => {
 	const fetchStatus = async (): Promise<NowPlayingResponse | undefined> => {
 		const res = await fetch(
-			import.meta.env.PUBLIC_PROXY_HOST || "https://now-playing.bigspeed.me",
+			import.meta.env.PUBLIC_PROXY_HOST || "https://now-playing.brwr.dev",
 		);
 		if (res.status !== 200) {
 			console.error(`bad status fetching now playing: ${res.status}`);
